@@ -1,0 +1,26 @@
+{
+  "name": "graphql-node-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "16.8.1",
+    "graphql-tag": "^2.12.6",
+    "graphql-yoga": "5.1.1"
+  },
+  "devDependencies": {
+    "@types/cli-color": "2.0.6",
+    "@types/node": "20.11.9",
+    "cli-color": "2.0.3",
+    "nodemon": "3.0.3",
+    "ts-node": "10.9.2",
+    "tsc": "2.0.4",
+    "typescript": "5.3.3"
+  }
+}
