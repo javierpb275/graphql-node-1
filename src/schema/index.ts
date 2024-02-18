@@ -14,6 +14,9 @@ export const schema = createSchema({
     }
   `,
   resolvers: {
+    User: {
+      name: (parent) => parent.name + " Pérez",
+    },
     Query: {
       hello: () => "world",
       number: () => 1,
