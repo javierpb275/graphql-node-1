@@ -5,6 +5,12 @@ import { User } from "./types";
 
 export const schema = createSchema({
   typeDefs: gql`
+    type Post {
+      userId: Int
+      id: Int
+      title: String
+      body: String
+    }
     type Company {
       name: String
       catchPhrase: String
@@ -31,6 +37,7 @@ export const schema = createSchema({
       company: Company
       address: Address
       nextUser: User
+      posts: [Post]
     }
     type Query {
       hello: String
@@ -40,6 +47,12 @@ export const schema = createSchema({
   `,
   resolvers: {
     User: {
+      posts: async ({ id }: User) => {
+        const { data } = await axios.get(
+          `https://jsonplaceholder.typicode.com/posts?userId=${id}`
+        );
+        return data;
+      },
       name: ({ name }: User) => name + " says: 'Hi!'",
       nextUser: async ({ id }: User) => {
         const { data } = await axios.get(
@@ -51,11 +64,11 @@ export const schema = createSchema({
     Query: {
       hello: () => "world",
       number: () => 1,
-      user: async (_, { id }: { id: number }) => {
-        const { data } = await axios.get(
+      user: async (_, { id }: { id: number }): Promise<User> => {
+        const { data: user } = await axios.get(
           "https://jsonplaceholder.typicode.com/users/" + id
         );
-        return data;
+        return user;
       },
     },
   },
