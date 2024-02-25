@@ -1,28 +1,35 @@
 export type User = {
   id: number;
-  name: String;
-  username: String;
-  email: String;
-  phone: String;
-  website: String;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  website: string;
   company: Company;
   address: Address;
   nextUser: User;
 };
 
 export type Company = {
-  name: String;
-  catchPhrase: String;
-  bs: String;
+  name: string;
+  catchPhrase: string;
+  bs: string;
 };
 export type Geo = {
-  lat: String;
-  lng: String;
+  lat: string;
+  lng: string;
 };
 export type Address = {
-  street: String;
-  suite: String;
-  city: String;
-  zipcode: String;
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
   geo: Geo;
+};
+
+export type Post = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 };

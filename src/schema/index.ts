@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { createSchema } from "graphql-yoga";
 import axios from "axios";
-import { User } from "./types";
+import { Post, User } from "./types";
 
 export const schema = createSchema({
   typeDefs: gql`
@@ -10,6 +10,7 @@ export const schema = createSchema({
       id: Int
       title: String
       body: String
+      user: User
     }
     type Company {
       name: String
@@ -46,6 +47,14 @@ export const schema = createSchema({
     }
   `,
   resolvers: {
+    Post: {
+      user: async ({ userId }: Post): Promise<User> => {
+        const { data: user } = await axios.get(
+          "https://jsonplaceholder.typicode.com/users/" + userId
+        );
+        return user;
+      },
+    },
     User: {
       posts: async ({ id }: User) => {
         const { data } = await axios.get(
