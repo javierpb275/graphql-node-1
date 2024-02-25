@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { createSchema } from "graphql-yoga";
+import axios from "axios";
 
 export const schema = createSchema({
   typeDefs: gql`
@@ -32,7 +33,7 @@ export const schema = createSchema({
     type Query {
       hello: String
       number: Int
-      user: User
+      user(id: Int!): User
     }
   `,
   resolvers: {
@@ -42,7 +43,12 @@ export const schema = createSchema({
     Query: {
       hello: () => "world",
       number: () => 1,
-      user: () => ({ id: 1, name: "Pepe" }),
+      user: async (_, { id }: { id: number }) => {
+        const { data } = await axios.get(
+          "https://jsonplaceholder.typicode.com/users/" + id
+        );
+        return data;
+      },
     },
   },
 });

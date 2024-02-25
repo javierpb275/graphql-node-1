@@ -10,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "1.6.7",
     "graphql": "16.8.1",
-    "graphql-tag": "^2.12.6",
+    "graphql-tag": "2.12.6",
     "graphql-yoga": "5.1.1"
   },
   "devDependencies": {
